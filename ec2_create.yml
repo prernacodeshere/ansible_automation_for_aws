@@ -1,0 +1,20 @@
+- name: Provision EC2 Instance 
+  hosts: localhost
+  gather_facts: True
+  tasks:    
+    - name: Create instance
+      ec2_instance:
+        aws_access_key: dummy_access_key
+        aws_secret_key: dummy_secret_key
+        name: "public-compute-instance"
+        key_name: "vmskp"
+        vpc_subnet_id: subnet-08df471160c728cad
+        instance_type: t2.micro
+        security_group: default
+        network:
+          assign_public_ip: true
+        image_id: ami-01e444924a2233b07
+        tags:
+          Environment: Testing
+        region: eu-central-1
+      

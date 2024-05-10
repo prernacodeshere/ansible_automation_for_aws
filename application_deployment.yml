@@ -1,0 +1,19 @@
+- name: Create index.html on existing Apache server
+  hosts: myvm
+  become: yes
+
+  tasks:
+    - name: Create index.html
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Welcome to my Apache Server</title>
+          </head>
+          <body>
+              <h1>Hello from Ansible and Apache!</h1>
+              <p>This is a test page served by Apache.</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html

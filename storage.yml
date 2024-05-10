@@ -1,0 +1,29 @@
+- name: Format and mount EBS volume, install Apache
+  hosts: myvm
+  become: yes
+  tasks:
+    - name: Create filesystem on public-compute-ebs
+      filesystem:
+        fstype: xfs
+        dev: "/dev/xvdf"
+        force: yes
+
+    - name: Mount EBS volume
+      mount:
+        path: "/var/www/html"
+        src: "/dev/xvdf"
+        fstype: xfs
+        state: mounted
+    
+    - name: Make EBS mount persistent
+      lineinfile:
+        line: "/dev/xvdf /var/www/html xfs defaults 0 0"
+        path: /etc/fstab
+        state: present
+
+    - name: Install Apache
+      package:
+        name: apache2
+        state: present
+
+    

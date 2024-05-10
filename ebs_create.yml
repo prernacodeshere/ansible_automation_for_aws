@@ -1,0 +1,13 @@
+- name: Ansible Play to create EBS Volume
+  hosts: localhost
+  tasks:
+    - name: Create an EBS Volume of size 1GB 
+      ec2_vol:
+        aws_access_key: dummy_access_key
+        aws_secret_key: dummy_secret_key
+        region: eu-central-1
+        zone: eu-central-1c
+        volume_size: 1
+        volume_type: gp2
+        device_name: /dev/xvdf
+                  

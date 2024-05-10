@@ -1,0 +1,13 @@
+- name: Ansible Play to attach an existing ebs volume to an ec2 instance
+  hosts: localhost
+  tasks:
+     - name: Attach pre-existing ebs volume to ec2 instance
+       ec2_vol:
+         aws_access_key: dummy_access_key
+         aws_secret_key: dummy_secret_key
+         region: eu-central-1
+         zone: eu-central-1c
+         instance: i-0a337ffc093ff4336
+         id: vol-022e19ec2ee5eeb1a
+         device_name: /dev/xvdf
+         delete_on_termination: true
